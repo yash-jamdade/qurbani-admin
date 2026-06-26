@@ -4,30 +4,37 @@ import {
   RefreshCw,
   Download,
   ChevronDown,
+  Menu,
 } from "lucide-react";
 
-const Header = () => {
+const Header = ({ sidebarOpen, setSidebarOpen }) => {
   return (
-    <header className="h-20 bg-white border-b border-gray-200 px-8 flex items-center justify-between">
-
+    <header className="h-20 bg-white border-b border-gray-200 px-6 flex items-center justify-between gap-4">
+      
       {/* Left Section */}
-      <div>
-        <h1 className="text-2xl font-bold text-gray-800">
-          Dashboard
-        </h1>
+      <div className="flex items-center gap-4">
+        {/* Sidebar Toggle Button */}
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors shrink-0"
+          aria-label="Toggle sidebar"
+        >
+          <Menu size={22} />
+        </button>
 
-        <p className="text-sm text-gray-500 mt-1">
-          Welcome back! Here's what's happening today.
-        </p>
+        <div>
+          <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
+          <p className="text-sm text-gray-500 mt-0.5">
+            Welcome back! Here's what's happening today.
+          </p>
+        </div>
       </div>
 
       {/* Right Section */}
-      <div className="flex items-center gap-4">
-
+      <div className="flex items-center gap-3">
         {/* Search */}
-        <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 w-72">
-          <Search size={18} className="text-gray-500" />
-
+        <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 w-64">
+          <Search size={18} className="text-gray-500 shrink-0" />
           <input
             type="text"
             placeholder="Search..."
@@ -36,12 +43,9 @@ const Header = () => {
         </div>
 
         {/* Date Filter */}
-        <button className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-50 transition">
-          <span className="text-sm">
-            This Month
-          </span>
-
-          <ChevronDown size={18} />
+        <button className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-50 transition whitespace-nowrap">
+          <span className="text-sm">This Month</span>
+          <ChevronDown size={16} />
         </button>
 
         {/* Refresh */}
@@ -50,21 +54,17 @@ const Header = () => {
         </button>
 
         {/* Export */}
-        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button className="flex items-center gap-2 bg-[#0b6b46] text-white px-4 py-2 rounded-lg hover:bg-[#0b6b46] transition whitespace-nowrap">
           <Download size={18} />
-
-          Export
+          <span className="text-sm font-medium">Export</span>
         </button>
 
         {/* Notification */}
         <button className="relative p-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition">
           <Bell size={20} />
-
           <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
         </button>
-
       </div>
-
     </header>
   );
 };
